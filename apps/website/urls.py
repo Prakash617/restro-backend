@@ -1,0 +1,54 @@
+from django.urls import path
+from .views import (
+    PublicPlaceOrderView,
+    PublicRestaurantSiteView,
+    PublicSubmitFeedbackView,
+    PublicTableReserveView,
+    PublicTrackOrderView,
+    TestimonialDetailView,
+    TestimonialListCreateView,
+    WebsiteSettingsRetrieveUpdateView,
+)
+
+urlpatterns = [
+    path(
+        "website/settings/",
+        WebsiteSettingsRetrieveUpdateView.as_view(),
+        name="website-settings",
+    ),
+    path(
+        "website/testimonials/",
+        TestimonialListCreateView.as_view(),
+        name="website-testimonial-list-create",
+    ),
+    path(
+        "website/testimonials/<int:pk>/",
+        TestimonialDetailView.as_view(),
+        name="website-testimonial-detail",
+    ),
+    path(
+        "public/site/<slug:tenant_slug>/",
+        PublicRestaurantSiteView.as_view(),
+        name="public-restaurant-site",
+    ),
+    path(
+        "public/site/<slug:tenant_slug>/order/",
+        PublicPlaceOrderView.as_view(),
+        name="public-place-order",
+    ),
+    path(
+        "public/site/<slug:tenant_slug>/track/<str:order_number>/",
+        PublicTrackOrderView.as_view(),
+        name="public-track-order",
+    ),
+    path(
+        "public/site/<slug:tenant_slug>/reserve/",
+        PublicTableReserveView.as_view(),
+        name="public-table-reserve",
+    ),
+    path(
+        "public/site/<slug:tenant_slug>/feedback/",
+        PublicSubmitFeedbackView.as_view(),
+        name="public-submit-feedback",
+    ),
+]

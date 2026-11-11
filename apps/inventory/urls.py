@@ -1,0 +1,72 @@
+from django.urls import path
+from .views import (
+    InventoryItemAdjustStockView,
+    InventoryItemDetailView,
+    InventoryItemListCreateView,
+    PurchaseOrderDetailView,
+    PurchaseOrderListCreateView,
+    PurchaseOrderReceiveView,
+    RecipeIngredientDetailView,
+    RecipeIngredientListCreateView,
+    StockMovementListView,
+    SupplierDetailView,
+    SupplierListCreateView,
+)
+
+urlpatterns = [
+    path(
+        "inventory/suppliers/",
+        SupplierListCreateView.as_view(),
+        name="supplier-list-create",
+    ),
+    path(
+        "inventory/suppliers/<int:pk>/",
+        SupplierDetailView.as_view(),
+        name="supplier-detail",
+    ),
+    path(
+        "inventory/items/",
+        InventoryItemListCreateView.as_view(),
+        name="inventory-item-list-create",
+    ),
+    path(
+        "inventory/items/<int:pk>/",
+        InventoryItemDetailView.as_view(),
+        name="inventory-item-detail",
+    ),
+    path(
+        "inventory/items/<int:pk>/adjust/",
+        InventoryItemAdjustStockView.as_view(),
+        name="inventory-item-adjust",
+    ),
+    path(
+        "inventory/recipes/",
+        RecipeIngredientListCreateView.as_view(),
+        name="recipe-ingredient-list-create",
+    ),
+    path(
+        "inventory/recipes/<int:pk>/",
+        RecipeIngredientDetailView.as_view(),
+        name="recipe-ingredient-detail",
+    ),
+    path(
+        "inventory/purchase-orders/",
+        PurchaseOrderListCreateView.as_view(),
+        name="purchase-order-list-create",
+    ),
+    path(
+        "inventory/purchase-orders/<int:pk>/",
+        PurchaseOrderDetailView.as_view(),
+        name="purchase-order-detail",
+    ),
+    path(
+        "inventory/purchase-orders/<int:pk>/receive/",
+        PurchaseOrderReceiveView.as_view(),
+        name="purchase-order-receive",
+    ),
+    path(
+        "inventory/movements/",
+        StockMovementListView.as_view(),
+        name="stock-movement-list",
+    ),
+]

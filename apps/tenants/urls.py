@@ -1,0 +1,93 @@
+from django.urls import path
+from .views import (
+    PublicLandingView,
+    PublicOnboardRestaurantView,
+    PublicPlansListView,
+    PublicRestaurantsListView,
+    SuperAdminActivateTenantView,
+    SuperAdminImpersonateTenantView,
+    SuperAdminInvoiceDetailView,
+    SuperAdminInvoiceListCreateView,
+    SuperAdminOverviewView,
+    SuperAdminPlanDetailView,
+    SuperAdminPlanListCreateView,
+    SuperAdminSuspendTenantView,
+    SuperAdminTenantDetailView,
+    SuperAdminTenantListCreateView,
+    SuperAdminToggleTenantStatusView,
+)
+
+urlpatterns = [
+    path(
+        "superadmin/overview/",
+        SuperAdminOverviewView.as_view(),
+        name="superadmin-overview",
+    ),
+    path(
+        "superadmin/tenants/",
+        SuperAdminTenantListCreateView.as_view(),
+        name="superadmin-tenant-list-create",
+    ),
+    path(
+        "superadmin/tenants/<int:pk>/",
+        SuperAdminTenantDetailView.as_view(),
+        name="superadmin-tenant-detail",
+    ),
+    path(
+        "superadmin/tenants/<int:pk>/suspend/",
+        SuperAdminSuspendTenantView.as_view(),
+        name="superadmin-tenant-suspend",
+    ),
+    path(
+        "superadmin/tenants/<int:pk>/activate/",
+        SuperAdminActivateTenantView.as_view(),
+        name="superadmin-tenant-activate",
+    ),
+    path(
+        "superadmin/tenants/<int:pk>/toggle-status/",
+        SuperAdminToggleTenantStatusView.as_view(),
+        name="superadmin-tenant-toggle-status",
+    ),
+    path(
+        "superadmin/tenants/<int:pk>/impersonate/",
+        SuperAdminImpersonateTenantView.as_view(),
+        name="superadmin-tenant-impersonate",
+    ),
+    path(
+        "superadmin/plans/",
+        SuperAdminPlanListCreateView.as_view(),
+        name="superadmin-plan-list-create",
+    ),
+    path(
+        "superadmin/plans/<int:pk>/",
+        SuperAdminPlanDetailView.as_view(),
+        name="superadmin-plan-detail",
+    ),
+    path(
+        "superadmin/invoices/",
+        SuperAdminInvoiceListCreateView.as_view(),
+        name="superadmin-invoice-list-create",
+    ),
+    path(
+        "superadmin/invoices/<int:pk>/",
+        SuperAdminInvoiceDetailView.as_view(),
+        name="superadmin-invoice-detail",
+    ),
+    path("public/plans/", PublicPlansListView.as_view(), name="public-plans"),
+    path(
+        "public/restaurants/",
+        PublicRestaurantsListView.as_view(),
+        name="public-restaurants",
+    ),
+    path("public/landing/", PublicLandingView.as_view(), name="public-landing"),
+    path(
+        "public/onboard/",
+        PublicOnboardRestaurantView.as_view(),
+        name="public-onboard",
+    ),
+    path(
+        "public/register-tenant/",
+        PublicOnboardRestaurantView.as_view(),
+        name="public-register-tenant",
+    ),
+]

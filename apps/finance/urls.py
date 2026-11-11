@@ -1,0 +1,60 @@
+from django.urls import path
+from .views import (
+    CashRegisterSessionCloseView,
+    CashRegisterSessionListCreateView,
+    ExpenseDetailView,
+    ExpenseListCreateView,
+    FinanceSummaryView,
+    PaymentGatewayInitiateView,
+    TaxInvoiceListView,
+    TaxInvoicePrintView,
+    TaxInvoiceVoidView,
+)
+
+urlpatterns = [
+    path(
+        "finance/register-sessions/",
+        CashRegisterSessionListCreateView.as_view(),
+        name="register-session-list-create",
+    ),
+    path(
+        "finance/register-sessions/<int:pk>/close/",
+        CashRegisterSessionCloseView.as_view(),
+        name="register-session-close",
+    ),
+    path(
+        "finance/tax-invoices/",
+        TaxInvoiceListView.as_view(),
+        name="tax-invoice-list",
+    ),
+    path(
+        "finance/tax-invoices/<int:pk>/print/",
+        TaxInvoicePrintView.as_view(),
+        name="tax-invoice-print",
+    ),
+    path(
+        "finance/tax-invoices/<int:pk>/void/",
+        TaxInvoiceVoidView.as_view(),
+        name="tax-invoice-void",
+    ),
+    path(
+        "finance/expenses/",
+        ExpenseListCreateView.as_view(),
+        name="expense-list-create",
+    ),
+    path(
+        "finance/expenses/<int:pk>/",
+        ExpenseDetailView.as_view(),
+        name="expense-detail",
+    ),
+    path(
+        "finance/summary/",
+        FinanceSummaryView.as_view(),
+        name="finance-summary",
+    ),
+    path(
+        "finance/gateways/initiate/",
+        PaymentGatewayInitiateView.as_view(),
+        name="payment-gateway-initiate",
+    ),
+]
